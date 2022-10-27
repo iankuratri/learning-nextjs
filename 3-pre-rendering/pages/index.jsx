@@ -5,7 +5,10 @@ function Home() {
     <div>
       <h1>Next JS pre-rendering</h1>
 
-      <Link href="/users">Users</Link>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <Link href="/users">Users</Link>
+        <Link href="/posts">Posts</Link>
+      </div>
     </div>
   );
 }
