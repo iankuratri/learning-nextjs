@@ -8,6 +8,7 @@ function Home() {
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Link href="/users">Users</Link>
         <Link href="/posts">Posts</Link>
+        <Link href="/products">Products</Link>
       </div>
     </div>
   );
