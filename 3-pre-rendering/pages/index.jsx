@@ -10,6 +10,7 @@ function Home() {
         <Link href="/posts">Posts</Link>
         <Link href="/products">Products</Link>
         <Link href="/news">News</Link>
+        <Link href="/dashboard">Dashboard</Link>
       </div>
     </div>
   );
