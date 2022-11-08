@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link";
 
 const NewsArticleList = ({ articles }) => {
   return (
@@ -8,7 +8,8 @@ const NewsArticleList = ({ articles }) => {
         return (
           <div key={article.id}>
             <h2>
-              {article.id}. {article.title} | {article.category}
+              {article.id}. {article.title} |{" "}
+              <Link href={`/news/${article.category}`}>{article.category}</Link>
             </h2>
           </div>
         );
