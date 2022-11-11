@@ -31,7 +31,7 @@ function Navbar() {
               <a
                 onClick={(e) => {
                   e.preventDefault();
-                  signIn("github");
+                  signIn();
                 }}
               >
                 Sign In
