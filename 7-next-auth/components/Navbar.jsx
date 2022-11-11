@@ -1,13 +1,20 @@
 import Link from "next/link";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function Navbar() {
+  const { data: session, status } = useSession();
+
   return (
     <nav className="header">
       <h1 className="logo">
         <a href="#">NextAuth</a>
       </h1>
-      <ul className={`main-nav`}>
+
+      <ul
+        className={`main-nav ${
+          !session && status === "loading" ? "loading" : "loaded"
+        }`}
+      >
         <li>
           <Link href="/">Home</Link>
         </li>
@@ -18,30 +25,35 @@ function Navbar() {
           <Link href="/blog">Blog</Link>
         </li>
 
-        <li>
-          <Link href="/api/auth/signin" legacyBehavior>
-            <a
-              onClick={(e) => {
-                e.preventDefault();
-                signIn();
-              }}
-            >
-              Sign In
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/api/auth/signout" legacyBehavior>
-            <a
-              onClick={(e) => {
-                e.preventDefault();
-                signOut();
-              }}
-            >
-              Sign Out
-            </a>
-          </Link>
-        </li>
+        {!session && status !== "authenticated" && (
+          <li>
+            <Link href="/api/auth/signin" legacyBehavior>
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  signIn("github");
+                }}
+              >
+                Sign In
+              </a>
+            </Link>
+          </li>
+        )}
+
+        {session && status !== "unauthenticated" && (
+          <li>
+            <Link href="/api/auth/signout" legacyBehavior>
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  signOut();
+                }}
+              >
+                Sign Out
+              </a>
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );
